@@ -1,6 +1,10 @@
+#! Based on https://www.r-bloggers.com/2020/03/using-r-simple-gantt-chart-with-ggplot2/
+#! Inspiation Janet Hill https://research-groups.usask.ca/hilllab/index.php
+
 library(tidyverse)
 library(lubridate)
 library(here)
+
 # read in people information
 LabGantt <- read_csv(here("LabGantt.csv"))
 CommitteeGantt <- read_csv(here("CommitteeGantt.csv"))
@@ -36,7 +40,7 @@ plot_gantt <- qplot(xmin = Start,
   ylab("") +
   ggtitle("MicroStats Lab")
 
-# Repate above for committees
+# Repeat above for committees
 CommitteeGantt$End[is.na(CommitteeGantt$End)] <- Sys.Date()
 CommitteeGantt$Days <- CommitteeGantt$End - CommitteeGantt$Start
 
