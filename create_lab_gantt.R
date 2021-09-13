@@ -11,7 +11,7 @@ LabGantt <- LabGantt |>
   mutate(
     # When no end date, change to today's date
     # End = if_else(is.na(End), Sys.Date(), End),
-    End = if_else(is.na(End), ymd("20211231"), End),
+    End = if_else(is.na(End), today(), End),
     # Calculate total number of days spent in lab
     Days = End - Start,
     # Set factor level to order the Position on the plot
