@@ -15,11 +15,13 @@ LabGantt <- LabGantt |>
     # Calculate total number of days spent in lab
     Days = End - Start,
     # Set factor level to order the Position on the plot
-    Positon = factor(Position),
+    Position = factor(Position, levels = c("PI", "UG", "MSc",
+                                          "PhD", "RA", "PDF")),
     # Convert names to factors and order wrt start date
-    Name = fct_reorder(Name, Start, min, .desc= TRUE),
+    Name = fct_reorder(Name, Start, min, .desc= TRUE)
     ) |> 
-  arrange(Start, desc(Days))
+  arrange(Start, desc(Days)) |> 
+  filter(Days > 0)
 
 # Plot----
 LabGantt |> 
@@ -29,12 +31,15 @@ LabGantt |>
                      y = Name,
                      colour = Position),
                  size = 5) +
-  scale_colour_manual(values = c("#2D708EFF", "#DCE319FF", "#808080", 
+  scale_colour_manual(values = c("#000000", "#2D708EFF", "#DCE319FF", "#808080", 
                                  "#20A387FF", "#482677FF")) +
   theme_bw() +
   scale_x_date() +
   theme(panel.grid = element_blank()) +
-  geom_vline(xintercept=as.numeric(ymd("2020-01-01", "2021-01-01", "2022-01-01")), linetype="dotted") +
+  geom_vline(xintercept = as.numeric(ymd("2020-01-01", 
+                                         "2021-01-01", 
+                                         "2022-01-01")), 
+             linetype = "dotted") +
   xlab("") + ylab("") +
   ggtitle("Dimension Reduction-UManitoba")
 
