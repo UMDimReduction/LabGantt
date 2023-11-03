@@ -30,7 +30,7 @@ LabGantt |>
                      xmax = End,
                      y = Name,
                      colour = Position),
-                 size = 5) +
+                 linewidth = 5) +
   scale_colour_manual(values = c("#000000", "#2D708EFF", "#DCE319FF", "#808080", 
                                  "#20A387FF", "#482677FF")) +
   theme_bw() +
@@ -38,7 +38,8 @@ LabGantt |>
   theme(panel.grid = element_blank()) +
   geom_vline(xintercept = as.numeric(ymd("2020-01-01", 
                                          "2021-01-01", 
-                                         "2022-01-01")), 
+                                         "2022-01-01",
+                                         "2023-01-01")), 
              linetype = "dotted") +
   xlab("") + ylab("") +
   ggtitle("Dimension Reduction-UManitoba")
